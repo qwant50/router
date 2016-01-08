@@ -9,7 +9,6 @@
 class Template
 {
     public $content = '';
-    public $layout ='';
     public $dir_phtml = '';
 
     public function __construct($dir_phtml) {
@@ -21,14 +20,11 @@ class Template
         if (file_exists($this->dir_phtml. $page.'.phtml')) {
             ob_start();
             require_once $this->dir_phtml. $page. '.phtml';
-            $this->content = ob_get_contents();
-            ob_end_clean();
+            $this->content = ob_get_clean();
 
-            ob_start();
             require_once  $this->dir_phtml. 'layouts'. DIRECTORY_SEPARATOR. 'default.phtml';
-            $this->layout = ob_get_contents();
-            ob_end_clean();
-            return $this->layout;
+            return ob_get_clean();
+
         }
         else require_once $this->dir_phtml. 'error404.phtml';
 
