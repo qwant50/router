@@ -17,22 +17,21 @@ class Template
     }
 
     public function getContent() {
-        if (isset($_GET['page'])) {
-            $page = trim($_GET['page']);
-            if (file_exists($this->dir_phtml. $page.'.phtml')) {
-                ob_start();
-                require_once $this->dir_phtml. $page. '.phtml';
-                $this->content = ob_get_contents();
-                ob_end_clean();
+        $page = (!isset($_GET['page'])) ? trim($_GET['page']) : 'login';
+        if (file_exists($this->dir_phtml. $page.'.phtml')) {
+            ob_start();
+            require_once $this->dir_phtml. $page. '.phtml';
+            $this->content = ob_get_contents();
+            ob_end_clean();
 
-                ob_start();
-                require_once  $this->dir_phtml. 'layouts'. DIRECTORY_SEPARATOR. 'default.phtml';
-                $this->layout = ob_get_contents();
-                ob_end_clean();
-                return $this->layout;
-            }
+            ob_start();
+            require_once  $this->dir_phtml. 'layouts'. DIRECTORY_SEPARATOR. 'default.phtml';
+            $this->layout = ob_get_contents();
+            ob_end_clean();
+            return $this->layout;
         }
         else require_once $this->dir_phtml. 'error404.phtml';
+
     }
 
 }
