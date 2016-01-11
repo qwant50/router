@@ -8,11 +8,13 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-define ('__ROOT__', realpath(__DIR__). DIRECTORY_SEPARATOR);
-$dir_phtml = __ROOT__ . '..' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR;
+define('__ROOT__', realpath(__DIR__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR);
+define('DIR_TO_CLASSES', __ROOT__.'classes'.DIRECTORY_SEPARATOR);
+define('DIR_TO_PAGES', __ROOT__.'pages'.DIRECTORY_SEPARATOR);
 
-require_once  __ROOT__ . '..' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR. 'Template.php';
+require_once DIR_TO_CLASSES .'Autoloader.php';
+spl_autoload_register("Autoloader::myAutoload");
 
-$blabla = new Template($dir_phtml);
-echo $blabla->getContent();
+$blabla = new A\B\Template(DIR_TO_PAGES);
+echo $blabla->render();
 
