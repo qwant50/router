@@ -8,7 +8,7 @@
  */
 Class Autoloader
 {
-    protected static $prefix = 'A\\';  // progect's prefix
+    protected static $prefix = '';  // progect's prefix
 
     public static function myAutoload($class)
     {
