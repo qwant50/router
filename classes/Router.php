@@ -19,7 +19,7 @@ class Router
         $url = rtrim($url, '/');
         $url = explode('/', $url);
         $file = DIR_TO_PAGES.$url[2].TEMPLATE_EXTENSION;
-        (file_exists($file)) ? $this->page = $url[2] : $this->page = 'error404';
+        file_exists($file) ? $this->page = $url[2] : $this->page = 'error404';
 
         $template = new Template();
         echo $template->render($this->page);

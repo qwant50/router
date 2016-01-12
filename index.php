@@ -8,5 +8,4 @@
 
 require_once  realpath(__DIR__) .DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.'config.php';
 
-
 $router = new Router();  // default page
