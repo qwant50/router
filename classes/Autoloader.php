@@ -8,19 +8,17 @@
  */
 Class Autoloader
 {
-    protected static $prefix = 'A\\B\\';
+    protected static $prefix = 'A\\';  // progect's prefix
 
     public static function myAutoload($class)
     {
         $len = strlen(self::$prefix);
-        if (strncmp(self::$prefix, $class, $len) !== 0) return; //Other prefix
-        $className = substr($class, $len); // Get class name
-        var_dump($className);
-        $prefixNamespace = explode('\\', $class);
-        $fileName = DIR_TO_CLASSES . $className . ".php";
+        if (strncmp(self::$prefix, $class, $len) !== 0) return; // Progect's prefix detector
+        $relative_class = substr($class, $len); // Get class name
+        $fileName = DIR_TO_CLASSES . str_replace('\\', DIRECTORY_SEPARATOR, $relative_class) . ".php";
+      //  var_dump($fileName);
         if (file_exists($fileName)) {
             require_once $fileName;
         };
     }
-
 }
