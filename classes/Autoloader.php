@@ -16,7 +16,7 @@ Class Autoloader
         if (strncmp(self::$prefix, $class, $len) !== 0) return; // Progect's prefix detector
         $relative_class = substr($class, $len); // Get class name
         $fileName = DIR_TO_CLASSES . str_replace('\\', DIRECTORY_SEPARATOR, $relative_class) . ".php";
-      //  var_dump($fileName);
+
         if (file_exists($fileName)) {
             require_once $fileName;
         };

@@ -14,8 +14,8 @@ class Template
     public $content = '';
     public $dir_phtml = '';
 
-    public function __construct($dir_phtml) {
-        $this->dir_phtml = $dir_phtml;
+    public function __construct() {
+        $this->dir_phtml = DIR_TO_PAGES;
     }
 
     public function render($page)

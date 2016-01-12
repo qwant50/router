@@ -10,7 +10,3 @@ require_once  realpath(__DIR__) . DIRECTORY_SEPARATOR .DIRECTORY_SEPARATOR.'clas
 
 
 $router = new Router();  // default page
-
-$template = new Template(DIR_TO_PAGES);
-
-echo $template->render($router->page);
