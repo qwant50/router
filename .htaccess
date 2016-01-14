@@ -1,4 +1,10 @@
-RewriteEngine On
+AddDefaultCharset utf-8
+
+RewriteEngine on
+
+php_value upload_max_filesize 50M
+php_value post_max_size 50M
+
 Options FollowSymlinks
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
