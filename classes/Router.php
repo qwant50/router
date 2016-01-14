@@ -19,9 +19,9 @@ class Router
         $url = rtrim($url, '/');
         $url = explode('/', $url);
         $file = DIR_TO_PAGES.$url[2].TEMPLATE_EXTENSION;
-        $this->page = file_exists($file) ? $url[2] : 'error404';
+        $this->controller = file_exists($file) ? $url[2] : 'error404';
 
-        $template = new Template();
-        echo $template->render($this->page);
+        $view = new View();
+        echo $view->render($this->controller,'layouts' . DS . 'default');
     }
 }

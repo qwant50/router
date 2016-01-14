@@ -15,10 +15,15 @@ Class Autoloader
         $len = strlen(self::$prefix);
         if (strncmp(self::$prefix, $class, $len) !== 0) return; // Progect's prefix detector
         $relative_class = substr($class, $len); // Get class name
-        $fileName = DIR_TO_CLASSES . str_replace('\\', DIRECTORY_SEPARATOR, $relative_class) . ".php";
 
-        if (file_exists($fileName)) {
-            require_once $fileName;
-        };
+        $pathes = ['', 'core'.DS, 'controllers'.DS, 'models'.DS, 'views'.DS];
+
+        foreach ($pathes as $path):
+            $fileName = DIR_TO_CLASSES . $path. str_replace('\\', DS, $relative_class) . ".php";
+            if (file_exists($fileName)) {
+                require_once $fileName;
+                return;
+            }
+        endforeach;
     }
 }
